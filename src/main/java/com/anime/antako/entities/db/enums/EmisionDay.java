@@ -13,7 +13,7 @@ public enum EmisionDay {
     VIERNES("Viernes"),
     SABADO("Sábado"),
     DOMINGO("Domingo"),
-    NO_DEFINIDO("no definido");
+    NO_DEFINIDO("No definido");
 
     private final String value;
 }

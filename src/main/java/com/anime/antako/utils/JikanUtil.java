@@ -4,10 +4,8 @@ import com.anime.antako.entities.jikan.models.anime.AnimeJikan;
 import com.anime.antako.entities.jikan.models.reusable.MalEntity;
 import com.anime.antako.entities.jikan.models.title.Title;
 import com.anime.antako.entities.db.enums.EmisionDay;
-import com.anime.antako.entities.db.enums.Genre;
 import com.anime.antako.entities.db.enums.Season;
 import com.anime.antako.entities.db.enums.Type;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class JikanUtil {
         return alternatives;
     }
 
-    public static List<Genre> getGenres(AnimeJikan anime) {
+    public static List<Long> getIDsGenres(AnimeJikan anime) {
         List<String> genres = new ArrayList<>();
 
         genres.addAll(anime.getGenres().stream().map(MalEntity::getName).toList());
@@ -41,7 +39,6 @@ public class JikanUtil {
         return genres.stream().map(JikanUtil::genreToESP).toList();
     }
 
-    // TODO
     public static Season translateSeasonToESP(String season) {
         return switch (season) {
             case "spring" -> Season.PRIMAVERA;
@@ -65,86 +62,86 @@ public class JikanUtil {
         };
     }
 
-    public static Genre genreToESP(String genre) {
+    public static Long genreToESP(String genre) {
         return switch (genre) {
-            case "Action" -> Genre.ACCION;
-            case "Adventure" -> Genre.AVENTURA;
-            case "Avant Garde" -> Genre.VANGUARDIA;
-            case "Award Winning" -> Genre.PREMIADO;
-            case "Boys Love" -> Genre.AMOR_ENTRE_CHICOS;
-            case "Comedy" -> Genre.COMEDIA;
-            case "Drama" -> Genre.DRAMA;
-            case "Fantasy" -> Genre.FANTASIA;
-            case "Girls Love" -> Genre.AMOR_ENTRE_CHICAS;
-            case "Gourmet" -> Genre.GASTRONOMIA;
-            case "Horror" -> Genre.TERROR;
-            case "Mystery" -> Genre.MISTERIO;
-            case "Romance" -> Genre.ROMANCE;
-            case "Sci-Fi" -> Genre.CIENCIA_FICCION;
-            case "Slice of Life" -> Genre.RECUENTOS_DE_LA_VIDA;
-            case "Sports" -> Genre.DEPORTES;
-            case "Supernatural" -> Genre.SOBRENATURAL;
-            case "Suspense" -> Genre.SUSPENSO;
-            case "Ecchi" -> Genre.ECCHI;
-            case "Erotica" -> Genre.EROTICO;
-            case "Hentai" -> Genre.HENTAI;
-            case "Adult Cast" -> Genre.ELENCO_ADULTO;
-            case "Anthropomorphic" -> Genre.ANTROPOMORFICO;
-            case "CGDCT" -> Genre.CGDCT;
-            case "Childcare" -> Genre.CUIDADO_DE_NINOS;
-            case "Combat Sports" -> Genre.DEPORTES_DE_COMBATE;
-            case "Crossdressing" -> Genre.TRAVESTISMO;
-            case "Delinquents" -> Genre.DELINCUENTES;
-            case "Detective" -> Genre.DETECTIVES;
-            case "Educational" -> Genre.EDUCATIVO;
-            case "Gag Humor" -> Genre.HUMOR_ABSURDO;
-            case "Gore" -> Genre.GORE;
-            case "Harem" -> Genre.HAREM;
-            case "High Stakes Game" -> Genre.JUEGOS_DE_ALTO_RIESGO;
-            case "Historical" -> Genre.HISTORICO;
-            case "Idols (Female)" -> Genre.IDOLS_FEMENINAS;
-            case "Idols (Male)" -> Genre.IDOLS_MASCULINOS;
-            case "Isekai" -> Genre.ISEKAI;
-            case "Iyashikei" -> Genre.IYASHIKEI;
-            case "Love Polygon" -> Genre.POLIGONO_AMOROSO;
-            case "Magical Sex Shift" -> Genre.CAMBIO_DE_SEXO_MAGICO;
-            case "Mahou Shoujo" -> Genre.CHICAS_MAGICAS;
-            case "Martial Arts" -> Genre.ARTES_MARCIALES;
-            case "Mecha" -> Genre.MECHA;
-            case "Medical" -> Genre.MEDICO;
-            case "Military" -> Genre.MILITAR;
-            case "Music" -> Genre.MUSICA;
-            case "Mythology" -> Genre.MITOLOGIA;
-            case "Organized Crime" -> Genre.CRIMEN_ORGANIZADO;
-            case "Otaku Culture" -> Genre.CULTURA_OTAKU;
-            case "Parody" -> Genre.PARODIA;
-            case "Performing Arts" -> Genre.ARTES_ESCENICAS;
-            case "Pets" -> Genre.MASCOTAS;
-            case "Psychological" -> Genre.PSICOLOGICO;
-            case "Racing" -> Genre.CARRERAS;
-            case "Reincarnation" -> Genre.REENCARNACION;
-            case "Reverse Harem" -> Genre.REVERSE_HAREM;
-            case "Love Status Quo" -> Genre.AMOR_ESTATICO;
-            case "Samurai" -> Genre.SAMURAI;
-            case "School" -> Genre.ESCOLAR;
-            case "Showbiz" -> Genre.FARANDULA;
-            case "Space" -> Genre.ESPACIO;
-            case "Strategy Game" -> Genre.JUEGOS_DE_ESTRATEGIA;
-            case "Super Power" -> Genre.SUPER_PODERES;
-            case "Survival" -> Genre.SUPERVIVENCIA;
-            case "Team Sports" -> Genre.DEPORTES_EN_EQUIPO;
-            case "Time Travel" -> Genre.VIAJES_EN_EL_TIEMPO;
-            case "Vampire" -> Genre.VAMPIROS;
-            case "Video Game" -> Genre.VIDEOJUEGOS;
-            case "Visual Arts" -> Genre.ARTES_VISUALES;
-            case "Workplace" -> Genre.LUGAR_DE_TRABAJO;
-            case "Urban Fantasy" -> Genre.FANTASIA_URBANA;
-            case "Villainess" -> Genre.VILLANA;
-            case "Josei" -> Genre.JOSEI;
-            case "Kids" -> Genre.INFANTIL;
-            case "Seinen" -> Genre.SEINEN;
-            case "Shoujo" -> Genre.SHOUJO;
-            case "Shounen" -> Genre.SHOUNEN;
+            case "Action" -> 1L;
+            case "Adventure" -> 2L;
+            case "Avant Garde" -> 3L;
+            case "Award Winning" -> 4L;
+            case "Boys Love" -> 5L;
+            case "Comedy" -> 6L;
+            case "Drama" -> 7L;
+            case "Fantasy" -> 8L;
+            case "Girls Love" -> 9L;
+            case "Gourmet" -> 10L;
+            case "Horror" -> 11L;
+            case "Mystery" -> 12L;
+            case "Romance" -> 13L;
+            case "Sci-Fi" -> 14L;
+            case "Slice of Life" -> 15L;
+            case "Sports" -> 16L;
+            case "Supernatural" -> 17L;
+            case "Suspense" -> 18L;
+            case "Ecchi" -> 19L;
+            case "Erotica" -> 20L;
+            case "Hentai" -> 21L;
+            case "Adult Cast" -> 22L;
+            case "Anthropomorphic" -> 23L;
+            case "CGDCT" -> 24L;
+            case "Childcare" -> 25L;
+            case "Combat Sports" -> 26L;
+            case "Crossdressing" -> 27L;
+            case "Delinquents" -> 28L;
+            case "Detective" -> 29L;
+            case "Educational" -> 30L;
+            case "Gag Humor" -> 31L;
+            case "Gore" -> 32L;
+            case "Harem" -> 33L;
+            case "High Stakes Game" -> 34L;
+            case "Historical" -> 35L;
+            case "Idols (Female)" -> 36L;
+            case "Idols (Male)" -> 37L;
+            case "Isekai" -> 38L;
+            case "Iyashikei" -> 39L;
+            case "Love Polygon" -> 40L;
+            case "Magical Sex Shift" -> 41L;
+            case "Mahou Shoujo" -> 42L;
+            case "Martial Arts" -> 43L;
+            case "Mecha" -> 44L;
+            case "Medical" -> 45L;
+            case "Military" -> 46L;
+            case "Music" -> 47L;
+            case "Mythology" -> 48L;
+            case "Organized Crime" -> 49L;
+            case "Otaku Culture" -> 50L;
+            case "Parody" -> 51L;
+            case "Performing Arts" -> 52L;
+            case "Pets" -> 53L;
+            case "Psychological" -> 54L;
+            case "Racing" -> 55L;
+            case "Reincarnation" -> 56L;
+            case "Reverse Harem" -> 57L;
+            case "Love Status Quo" -> 58L;
+            case "Samurai" -> 59L;
+            case "School" -> 60L;
+            case "Showbiz" -> 61L;
+            case "Space" -> 62L;
+            case "Strategy Game" -> 63L;
+            case "Super Power" -> 64L;
+            case "Survival" -> 65L;
+            case "Team Sports" -> 66L;
+            case "Time Travel" -> 67L;
+            case "Vampire" -> 68L;
+            case "Video Game" -> 69L;
+            case "Visual Arts" -> 70L;
+            case "Workplace" -> 71L;
+            case "Urban Fantasy" -> 72L;
+            case "Villainess" -> 73L;
+            case "Josei" -> 74L;
+            case "Kids" -> 75L;
+            case "Seinen" -> 76L;
+            case "Shoujo" -> 77L;
+            case "Shounen" -> 78L;
             default -> null;
         };
     }

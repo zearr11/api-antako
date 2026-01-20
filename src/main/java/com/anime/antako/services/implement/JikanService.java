@@ -15,7 +15,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class JikanService implements IJikanService {
-
     private final WebClient webClient;
 
     @Override
@@ -82,5 +81,4 @@ public class JikanService implements IJikanService {
                 null :
                 JikanAnimeResponse.mappedJikan(result.getData());
     }
-
 }

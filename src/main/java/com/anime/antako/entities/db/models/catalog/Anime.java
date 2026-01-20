@@ -1,7 +1,6 @@
 package com.anime.antako.entities.db.models.catalog;
 
 import com.anime.antako.entities.db.enums.EmisionDay;
-import com.anime.antako.entities.db.enums.Genre;
 import com.anime.antako.entities.db.enums.Season;
 import com.anime.antako.entities.db.enums.State;
 import com.anime.antako.entities.db.enums.Type;
@@ -39,7 +38,6 @@ public class Anime {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
     private Double rating;
 
     @Column(nullable = false)
@@ -53,7 +51,6 @@ public class Anime {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    // RELATIONAL PROPERTIES
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Type type;
@@ -62,13 +59,10 @@ public class Anime {
     @Enumerated(EnumType.STRING)
     private Season season;
 
-    @ElementCollection(targetClass = Genre.class)
-    @CollectionTable(
-            name = "anime_has_genres",
-            joinColumns = @JoinColumn(name = "anime_id")
-    )
-    @Enumerated(EnumType.STRING)
-    @Column(name = "genres")
+    private Integer year;
+
+    // READING PROPERTIES
+    @ManyToMany(mappedBy = "animes")
     private Set<Genre> genres = new HashSet<>();
 
 }

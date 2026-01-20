@@ -2,7 +2,6 @@ package com.anime.antako.dto.response;
 
 import com.anime.antako.entities.jikan.models.anime.AnimeJikan;
 import com.anime.antako.entities.db.enums.EmisionDay;
-import com.anime.antako.entities.db.enums.Genre;
 import com.anime.antako.entities.db.enums.Season;
 import com.anime.antako.entities.db.enums.State;
 import com.anime.antako.entities.db.enums.Type;
@@ -11,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalTime;
 import java.util.*;
 
@@ -35,11 +33,11 @@ public class JikanAnimeResponse {
     private Season season;
     private Integer year;
 
-    private EmisionDay emissionDay;
-    private LocalTime emissionTime;
+    private EmisionDay emisionDay;
+    private LocalTime emisionTime;
     private String timeZone;
 
-    private List<Genre> genres;
+    private List<Long> genres;
 
     public static JikanAnimeResponse mappedJikan(AnimeJikan anime) {
 
@@ -64,7 +62,7 @@ public class JikanAnimeResponse {
         LocalTime emissionTime = anime.getBroadcast().getTime() != null ? LocalTime.parse(anime.getBroadcast().getTime()) : null;
         String timeZone = anime.getBroadcast().getTimezone();
 
-        List<Genre> genres = JikanUtil.getGenres(anime);
+        List<Long> genres = JikanUtil.getIDsGenres(anime);
 
         return new JikanAnimeResponse(
                 codJikan, urlImage, title, alternatives, type, status,
