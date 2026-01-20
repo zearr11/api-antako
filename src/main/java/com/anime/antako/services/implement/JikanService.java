@@ -1,14 +1,14 @@
 package com.anime.antako.services.implement;
 
-import com.anime.antako.dto.jikan.enums.*;
-import com.anime.antako.dto.jikan.models.JikanResponse;
+import com.anime.antako.entities.jikan.enums.*;
+import com.anime.antako.entities.jikan.models.JikanEntity;
 import com.anime.antako.dto.response.JikanAnimeResponse;
-import com.anime.antako.dto.response.PaginatedResponse;
+import com.anime.antako.dto.generics.PaginatedResponse;
+import com.anime.antako.entities.jikan.models.JikanEntity2;
 import com.anime.antako.services.interfaces.IJikanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,21 +19,21 @@ public class JikanService implements IJikanService {
     private final WebClient webClient;
 
     @Override
-    public JikanResponse getAnimeSearchFull(Boolean unapproved, Integer page, Integer limit,
-                                            String q, AnimeType type, Double score,
-                                            Double min_score, Double max_score,
-                                            AnimeStatus status, AnimeRating rating,
-                                            Boolean sfw, String genres, String genres_exclude,
-                                            AnimeOrderBy order_by, SortDirection sort,
-                                            String letter, String producers, String start_date,
-                                            String end_date) {
+    public JikanEntity getAnimeSearchFull(Boolean unapproved, Integer page, Integer limit,
+                                          String q, AnimeType type, Double score,
+                                          Double min_score, Double max_score,
+                                          AnimeStatus status, AnimeRating rating,
+                                          Boolean sfw, String genres, String genres_exclude,
+                                          AnimeOrderBy order_by, SortDirection sort,
+                                          String letter, String producers, String start_date,
+                                          String end_date) {
         return null;
     }
 
     @Override
     public PaginatedResponse<List<JikanAnimeResponse>> getAnimeSearchMin(Integer page, Integer limit,
                                                                          String q, AnimeStatus status) {
-        JikanResponse result = webClient.get()
+        JikanEntity result = webClient.get()
                 .uri(uriBuilder -> {
                     uriBuilder.path("/anime");
 
@@ -53,7 +53,7 @@ public class JikanService implements IJikanService {
                     return uriBuilder.build();
                 })
                 .retrieve()
-                .bodyToMono(JikanResponse.class)
+                .bodyToMono(JikanEntity.class)
                 .block();
 
         if (result == null) return null;
@@ -72,7 +72,15 @@ public class JikanService implements IJikanService {
 
     @Override
     public JikanAnimeResponse getAnimeById(Integer anime_id) {
-        return null;
+        JikanEntity2 result = webClient.get()
+                .uri("/anime/{anime_id}", anime_id)
+                .retrieve()
+                .bodyToMono(JikanEntity2.class)
+                .block();
+
+        return result == null ?
+                null :
+                JikanAnimeResponse.mappedJikan(result.getData());
     }
 
 }

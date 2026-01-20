@@ -1,11 +1,11 @@
 package com.anime.antako.dto.response;
 
-import com.anime.antako.dto.jikan.models.anime.AnimeJikan;
-import com.anime.antako.enums.EmisionDay;
-import com.anime.antako.enums.specials.Genre;
-import com.anime.antako.enums.specials.Season;
-import com.anime.antako.enums.specials.State;
-import com.anime.antako.enums.specials.Type;
+import com.anime.antako.entities.jikan.models.anime.AnimeJikan;
+import com.anime.antako.entities.db.enums.EmisionDay;
+import com.anime.antako.entities.db.enums.Genre;
+import com.anime.antako.entities.db.enums.Season;
+import com.anime.antako.entities.db.enums.State;
+import com.anime.antako.entities.db.enums.Type;
 import com.anime.antako.utils.JikanUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,12 +27,12 @@ public class JikanAnimeResponse {
     private String title;
     private List<String> titlesAlternatives;
 
-    private Type type; // Mapped Enum
-    private State status; // Mapped Enum
+    private Type type;
+    private State status;
 
     private Double rating;
 
-    private Season season; // spring | winter | autumn | summer
+    private Season season;
     private Integer year;
 
     private EmisionDay emissionDay;

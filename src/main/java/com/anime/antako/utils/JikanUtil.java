@@ -1,12 +1,12 @@
 package com.anime.antako.utils;
 
-import com.anime.antako.dto.jikan.models.anime.AnimeJikan;
-import com.anime.antako.dto.jikan.models.reusable.MalEntity;
-import com.anime.antako.dto.jikan.models.title.Title;
-import com.anime.antako.enums.EmisionDay;
-import com.anime.antako.enums.specials.Genre;
-import com.anime.antako.enums.specials.Season;
-import com.anime.antako.enums.specials.Type;
+import com.anime.antako.entities.jikan.models.anime.AnimeJikan;
+import com.anime.antako.entities.jikan.models.reusable.MalEntity;
+import com.anime.antako.entities.jikan.models.title.Title;
+import com.anime.antako.entities.db.enums.EmisionDay;
+import com.anime.antako.entities.db.enums.Genre;
+import com.anime.antako.entities.db.enums.Season;
+import com.anime.antako.entities.db.enums.Type;
 
 import java.util.ArrayList;
 import java.util.List;
